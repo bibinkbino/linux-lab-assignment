@@ -1,0 +1,42 @@
+# 1. System Uptime Verification
+uptime -p
+# Explanation: Displayed system uptime in pretty format. Shows how long system has been running.
+
+# 2. User Process Listing
+ps -u $USER
+# Explanation: Listed all processes owned by current user. Shows active applications and services.
+
+# 3. CPU Usage Analysis
+ps -u $USER -o pid,pcpu,comm --sort=-pcpu | head -5
+# Explanation: Identified top CPU-consuming processes. Helps monitor resource usage.
+
+# 4. Background Process Execution
+sleep 300 &
+jobs
+# Explanation: Started sleep command in background. Verified with jobs command showing running background processes.
+
+# 5. Process Priority Management
+renice 10 -p $(pgrep sleep)
+ps -o pid,ni,comm -p $(pgrep sleep)
+# Explanation: Changed priority of background process. Lower priority (higher nice value) uses less CPU.
+
+# 6. Memory Usage Monitoring
+free -h
+# Explanation: Displayed memory usage in human-readable format. Shows total, used, and available memory.
+
+# 7. Disk Space Inspection
+df -h /home
+# Explanation: Showed disk usage for filesystem containing home directory. Important for storage management.
+
+# 8. Shell Identification
+echo $SHELL
+# Explanation: Displayed current shell name. Helps understand environment and compatibility.
+
+# 9. Output Redirection
+uname -a > system_report.txt
+cat system_report.txt
+# Explanation: Redirected system info to file. Useful for logging and documentation.
+
+# 10. Disk Usage Visualization
+which ncdu
+# Explanation: Checked if ncdu is installed. This tool provides interactive disk usage analysis with navigation.
