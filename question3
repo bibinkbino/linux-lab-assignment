@@ -1,0 +1,40 @@
+# 1. File Creation
+echo "Sample text data for linking demonstration" > ~/sample_data.txt
+# Explanation: Created original file with sample content. Serves as source for links.
+
+# 2. Hard Link Creation
+ln ~/sample_data.txt ~/sample_hard.txt
+# Explanation: Created hard link. Both files share the same inode and data blocks.
+
+# 3. Symbolic Link Creation
+ln -s ~/sample_data.txt ~/sample_soft.txt
+# Explanation: Created symbolic link. This is a pointer to the original file path.
+
+# 4. Inode Verification
+ls -i ~/sample_data.txt ~/sample_hard.txt ~/sample_soft.txt
+# Explanation: Displayed inode numbers. Shows which files share the same inode.
+
+# 5. Inode Analysis
+# Explanation: sample_data.txt and sample_hard.txt share the same inode because hard links are different names for the same data. sample_soft.txt has a different inode as it's a separate file containing a path reference.
+
+# 6. File Metadata Inspection
+stat ~/sample_data.txt
+# Explanation: Displayed detailed file info including permissions, size, and timestamps.
+
+# 7. Disk Usage Check
+du -sh ~
+# Explanation: Showed home directory disk usage in human-readable format (MB/GB).
+
+# 8. File Size Overview
+ls -lh ~
+# Explanation: Displayed sizes of all files in home directory in readable format.
+
+# 9. Link Deletion Test
+rm ~/sample_soft.txt
+ls -l ~/sample_data.txt
+# Explanation: Deleted symbolic link. Original file remains unaffected, confirming soft link nature.
+
+# 10. Disk Utility Demonstration
+du -ah ~ | head -10
+df -h
+# Explanation: du shows disk usage per directory, df shows filesystem usage. Both help monitor storage.
